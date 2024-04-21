@@ -1,11 +1,11 @@
 public class Main {
     public static void main(String[] args) {
         try {
-            validate("Stern633","1233", "123");
+            validate("Stern_633","123", "123");
         } catch (WrongLoginException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         } catch (WrongPasswordException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
     }
@@ -17,17 +17,12 @@ public class Main {
             throw new WrongPasswordException("Длина пароля больше 20 символов");
         }
         for (int i = 0; i < login.length(); i++) {
-            if (chars.contains(Character.toString(login.charAt(i)))) {
-                continue;
-            } else {
+            if (!chars.contains(Character.toString(login.charAt(i)))) {
                 throw new WrongLoginException("Логин содержит неверные символы");
             }
-
         }
         for (int i = 0; i < password.length(); i++) {
-            if (chars.contains(Character.toString(password.charAt(i)))) {
-                continue;
-            } else {
+            if (!chars.contains(Character.toString(password.charAt(i)))) {
                 throw new WrongPasswordException("Пароль содержит неверные символы");
             }
         }
